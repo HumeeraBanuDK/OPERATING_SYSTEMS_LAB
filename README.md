@@ -1,8 +1,8 @@
 # OPERATING_SYSTEMS_LAB
-> Exp1: basics of unix commands
-> ## PROCEDURE: Login into the ubuntu terminal use Ctrl + Alt + t windows shortcut key or   go to activity bar search for terminal and mouse click the terminal open. 
-> ## Commands with Descriptions
-> ## GENERAL COMMANDS
+> ## Exp1: basics of unix commands
+> ### PROCEDURE: Login into the ubuntu terminal use Ctrl + Alt + t windows shortcut key or   go to activity bar search for terminal and mouse click the terminal open. 
+> ### Commands with Descriptions
+> ### GENERAL COMMANDS
 ```unix
   date
   Used to display the current system date and time.
@@ -48,7 +48,7 @@
   exit
   Exit from a process. If shell is the only process then logs out
 ```
-> ## DIRECTORY COMMANDS
+> ### DIRECTORY COMMANDS
   ```unix
   pwd
   Path of the present working directory
@@ -68,7 +68,7 @@
   rmdir subdir
   Removes an empty sub-directory.
   ```
-> ## FILE COMMANDS
+> ### FILE COMMANDS
   ```unix
   cat >filename
   To create a file with some contents.
@@ -122,7 +122,7 @@ Changes permission for the specified file. (r=4, w=2, x=1)
 chmod 740 file
 sets all rights for user, read only for groups and no rights for others
 ```
-> ## RESULT
+> ### RESULT
 > Thus the study and execution of Unix commands has been completed successfully.
 
 > ## Simulate UNIX commands like cp, ls, grep, etc
