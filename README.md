@@ -126,7 +126,7 @@ sets all rights for user, read only for groups and no rights for others
 > Thus the study and execution of Unix commands has been completed successfully.
 
 > ## Simulate UNIX commands like cp, ls, grep, etc
-> ## Cp simulate command Source code
+> ### Cp simulate command Source code
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -156,7 +156,7 @@ simulate_cp(argv[1], argv[2]);
 return EXIT_SUCCESS;
 }
 ```
-> ## Simulation code for ls command
+> ### Simulation code for ls command
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -179,5 +179,32 @@ closedir(dir);
 const char *path = argc > 1 ? argv[1] : ".";
 simulate_ls(path);
 return 0;
+}
+```
+> ### Simulate Grep command
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+void simulate_grep(const char *pattern, const char *filename) {
+FILE *file = fopen(filename, "r");
+if (!file) {
+perror("Error opening file");
+return;
+}
+char line[1024];
+while (fgets(line, sizeof(line), file)) {
+if (strstr(line, pattern)) { // Check if pattern exists in the line
+printf("%s", line);
+}
+}
+fclose(file);
+}int main(int argc, char *argv[]) {
+if (argc != 3) {
+fprintf(stderr, "Usage: %s <pattern> <filename>\n", argv[0]);
+return EXIT_FAILURE;
+}
+simulate_grep(argv[1], argv[2]);
+return EXIT_SUCCESS;
 }
 ```
