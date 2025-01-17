@@ -1,9 +1,9 @@
 # OPERATING_SYSTEMS_LAB
-```unix
 ## PROCEDURE: Login into the ubuntu terminal use Ctrl + Alt + t windows shortcut key or
 go to activity bar search for terminal and mouse click the terminal open.
 Commands with Descriptions
 ## GENERAL COMMANDS
+```unix
 date
 Used to display the current system date and time.
 date +%D
@@ -47,7 +47,9 @@ history
 To display the commands used by the user since log on.
 exit
 Exit from a process. If shell is the only process then logs out
+```
 ## DIRECTORY COMMANDS
+```unix
 pwd
 Path of the present working directory
 mkdir dir
@@ -61,11 +63,13 @@ Cd
 To switch to the home directory.
 cd /
 To switch to the root directory.
-cd .. To move back to the parent directory
-rmdirOperating System Lab Manual Department of CSE, SRIT, ATP
-Prepared by Mr. M. Narasimhulu, 5
+cd ..
+To move back to the parent directory
+rmdir subdir
 Removes an empty sub-directory.
-FILE COMMANDS
+```
+## FILE COMMANDS
+```unix
 cat >filename
 To create a file with some contents.
 To end typing press
@@ -118,6 +122,7 @@ chmod perm file
 Changes permission for the specified file. (r=4, w=2, x=1)
 chmod 740 file
 sets all rights for user, read only for groups and no rights for others
+```
 ## RESULT
 Thus the study and execution of Unix commands has been completed successfully.
-```
+
