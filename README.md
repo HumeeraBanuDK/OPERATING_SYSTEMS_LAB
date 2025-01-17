@@ -1,9 +1,9 @@
 # OPERATING_SYSTEMS_LAB
 ```unix
-PROCEDURE: Login into the ubuntu terminal use Ctrl + Alt + t windows shortcut key or
+## PROCEDURE: Login into the ubuntu terminal use Ctrl + Alt + t windows shortcut key or
 go to activity bar search for terminal and mouse click the terminal open.
 Commands with Descriptions
-GENERAL COMMANDS
+## GENERAL COMMANDS
 date
 Used to display the current system date and time.
 date +%D
@@ -47,7 +47,7 @@ history
 To display the commands used by the user since log on.
 exit
 Exit from a process. If shell is the only process then logs out
-DIRECTORY COMMANDS
+## DIRECTORY COMMANDS
 pwd
 Path of the present working directory
 mkdir dir
@@ -118,6 +118,6 @@ chmod perm file
 Changes permission for the specified file. (r=4, w=2, x=1)
 chmod 740 file
 sets all rights for user, read only for groups and no rights for others
-RESULT
+## RESULT
 Thus the study and execution of Unix commands has been completed successfully.
 ```
