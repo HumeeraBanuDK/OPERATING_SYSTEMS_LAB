@@ -1,7 +1,7 @@
 # OPERATING_SYSTEMS_LAB
 > Exp1: basics of unix commands
-> ## PROCEDURE: Login into the ubuntu terminal use Ctrl + Alt + t windows shortcut key or   go to activity bar search for terminal and mouse click the terminal open.
-  Commands with Descriptions
+> ## PROCEDURE: Login into the ubuntu terminal use Ctrl + Alt + t windows shortcut key or   go to activity bar search for terminal and mouse click the terminal open. 
+> ## Commands with Descriptions
 > ## GENERAL COMMANDS
 ```unix
   date
@@ -122,6 +122,6 @@ Changes permission for the specified file. (r=4, w=2, x=1)
 chmod 740 file
 sets all rights for user, read only for groups and no rights for others
 ```
-## RESULT
-Thus the study and execution of Unix commands has been completed successfully.
+> ## RESULT
+> Thus the study and execution of Unix commands has been completed successfully.
 
