@@ -170,12 +170,12 @@ In short, the program shows how to interact with files and directories in a Unix
 > 
 > `touch example.txt`
 > 
->  'ls > example.txt'
+>  `ls > example.txt`
 > 
 > compile the program
 > 
-> 'gcc filename.c -o exec-name
-> `
+> `gcc filename.c -o exec-name`
+> 
 > run the program
 > 
 > `./exec-name`
