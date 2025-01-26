@@ -1,6 +1,6 @@
 # Program Statement: 
 To implement UNIX operating system calls fork, exec, getpid, exit, wait, close, stat, opendir and readdir
-# Prgram Description
+# Program Description
   Description of `fork`, `exec`, `getpid`, `exit`, `wait`, `close`, `stat`, `opendir`, and `readdir` System Calls
 
 - **`fork()`**: Creates a new process by duplicating the current process, returning `0` to the child and the child’s PID to the parent.  
