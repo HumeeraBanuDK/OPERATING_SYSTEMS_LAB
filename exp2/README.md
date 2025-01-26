@@ -163,4 +163,14 @@ This C program demonstrates the use of several important system calls in a Unix-
   - Perform basic file operations like creating, writing, and closing files.
 
 In short, the program shows how to interact with files and directories in a Unix-like system using system calls.
-
+# HOW to execute Program
+> Open the terminal
+> create a file example.txt
+> `touch example.txt`
+>  'ls > example.txt'
+> compile the program
+> 'gcc filename.c -o exec-name`
+> run the program
+> `./exec-name`
+# Output of the code
+![ Program output in console](exp2.png)
