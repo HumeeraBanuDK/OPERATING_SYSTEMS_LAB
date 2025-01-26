@@ -122,3 +122,45 @@ int main() {
     }
 }
 ```
+# Interpretation of the program
+
+This C program demonstrates the use of several important system calls in a Unix-based operating system. Below is a step-by-step breakdown of the program's actions:
+
+## 1. Creating a Child Process (`fork()`)
+- The program starts by creating a **child process** using `fork()`.
+- **`fork()`** splits the program into two processes: the **parent process** and the **child process**.
+
+## 2. Child Process
+- In the **child process**, the program uses `execlp()` to replace the current process with a new program (`/bin/ls`), which lists the files in the current directory.
+- The child process **executes the `ls` command** and shows the contents of the directory.
+
+## 3. Parent Process
+- The **parent process** waits for the child process to finish using `wait()`.
+- Once the child finishes, the parent continues its work.
+
+## 4. Getting File Information (`stat()`)
+- The parent process uses the **`stat()`** function to get information about a file called `example.txt`.
+- It then prints the **permissions** (like `rwxr-xr--`) and **file size** of `example.txt`.
+
+## 5. Listing Directory Content (`opendir()` and `readdir()`)
+- The parent process then lists the files in the **parent directory** (i.e., `..`) using `opendir()` and `readdir()`.
+- These functions open a directory and read its contents, printing the names of the files inside.
+
+## 6. File Operations (Create, Write, Close)
+- The parent process **creates a new file** called `testfile.txt` using the **`open()`** system call. If the file doesn't exist, it is created.
+- It **writes** a message into the file using the **`write()`** system call.
+- Finally, it **closes** the file using `close()`.
+
+## 7. Program Ends
+- After completing all tasks, the parent process exits.
+
+## Summary:
+- The program demonstrates how to:
+  - Create processes with `fork()`.
+  - Execute commands using `execlp()`.
+  - Fetch file information using `stat()`.
+  - List files in directories with `opendir()` and `readdir()`.
+  - Perform basic file operations like creating, writing, and closing files.
+
+In short, the program shows how to interact with files and directories in a Unix-like system using system calls.
+
