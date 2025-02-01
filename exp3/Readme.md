@@ -300,10 +300,15 @@ int main() {
 > Open the terminal
 > 
 > compile the program
-> 
+>
 > `gcc filename.c -o exec-name`
 > 
 > run the program
 > 
 > `./exec-name`
->  
+>
+>  # Output of the program
+> ![ Screen Shot 1](op1.png)
+> ![ Screen Shot 2](op2.png)
+> ![ Screen Shot 3](op3.png)
+> ![ Screen Shot 4](op4.png)
