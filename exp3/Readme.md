@@ -228,3 +228,70 @@ int main() {
     return 0;
 }
 ```
+> ## Interpretation of the C CPU Scheduling Simulation Program
+
+> This C program simulates and compares several common CPU scheduling algorithms: FCFS, SJF, Priority, and Round Robin.  It aims to demonstrate how each algorithm affects process execution and performance by calculating and displaying waiting times and turnaround times.
+
+> **Program Overview:**
+
+> > The program takes process information (PID, burst time, arrival time, priority) as input. The user selects a scheduling algorithm to simulate, and the program calculates and displays performance metrics for each process and their averages.
+
+> **Code Structure and Functionality:**
+
+> 1. **`struct Process`:**
+> > > Defines the structure for process data: `pid`, `burst_time`, `arrival_time`, and `priority`.
+
+> 2. **`compare_burst_time` & `compare_priority`:**
+> > > Comparison functions for `qsort` (from `stdlib.h`) to sort processes by burst time (SJF) and priority (Priority scheduling).
+
+> 3. **`calculate_avg_times`:**
+> > > Calculates and *prints* total and average waiting time and turnaround time, including a header identifying the algorithm.  This function is called by each scheduling algorithm.
+
+> 4. **`fcfs` (First-Come, First-Served):**
+> > > Implements the FCFS algorithm.
+> > > Calculates completion time, waiting time, and turnaround time.
+> > > Handles idle time (when a process arrives after the previous one finishes).
+> > > Calls `calculate_avg_times` to display results.
+
+> 5. **`sjf` (Shortest Job First):**
+> > > Implements SJF.
+> > > Uses `qsort` with `compare_burst_time` to sort processes by burst time.
+> > > Calculates completion, waiting, and turnaround times.
+> > > Handles idle time.
+> > > Calls `calculate_avg_times` to display results.
+
+> 6. **`priority_scheduling`:**
+> > > Implements priority scheduling.
+> > > Uses `qsort` with `compare_priority` to sort processes by priority.
+> > > Effectively uses FCFS on the sorted processes (highest priority first).
+> > > Calls `fcfs` (because the logic is the same after sorting).
+
+> 7. **`round_robin`:**
+> > > Implements Round Robin.
+> > > Uses a `quantum` (time slice).
+> > > Tracks `remaining_bt` (remaining burst time).
+> > > Calculates waiting and turnaround times.
+> > > Handles preemption and queueing.
+> > > Calls `calculate_avg_times` to display results.
+
+> 8. **`main`:**
+> > > Gets the number of processes.
+> > > Takes process details as input.
+> > > Presents a menu to choose a scheduling algorithm.
+> > > Calls the chosen algorithm's function.
+> > > Loops until the user exits.
+
+> **Key Improvements:**
+
+> * **Clearer Output:**
+> > > `calculate_avg_times` handles printing results *and* includes a header identifying the algorithm.
+> * **Efficient Sorting:**
+> > > Uses `qsort` for sorting in SJF and Priority.
+> * **Idle Time Handling:**
+> > > Correctly handles processes arriving after the previous one finishes.
+> * **Negative Wait Time Handling:**
+> > > Sets negative wait times to 0.
+> * **Simplified Priority Scheduling:**
+> > > Sorts and then calls `fcfs`.
+
+> This improved version is more robust, efficient, and provides clearer output for comparing CPU scheduling algorithms.
