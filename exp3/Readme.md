@@ -1,3 +1,7 @@
+> # Program Ststement
+> ## To stimulate CPU Scheduling Algorithms like FCFS, SJF, RR and Priority using C
+>
+> # Program Description
 # CPU Scheduling Algorithms: FCFS, SJF, RR, and Priority
 
 This document explains the core concepts of First-Come, First-Served (FCFS), Shortest Job First (SJF), Round Robin (RR), and Priority CPU scheduling algorithms.
