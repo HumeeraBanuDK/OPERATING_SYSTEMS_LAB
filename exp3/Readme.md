@@ -313,8 +313,8 @@ int main() {
 > ![ Screen Shot 3](op3.png)
 > ![ Screen Shot 4](op4.png)
 >
-> **Conclusion:**
-
+> # **Conclusion:**
+>
 > This C program provides a valuable tool for understanding and comparing the behavior of several fundamental CPU scheduling algorithms: FCFS, SJF, Priority, and Round Robin. By simulating these algorithms with user-provided process data (PID, burst time, arrival time, and priority), the program calculates and displays key performance metrics, namely waiting time and turnaround time, for each process and their averages.  The clear output, including algorithm-specific headers, facilitates a direct comparison of how each algorithm impacts process execution.
 
 > The program highlights the trade-offs inherent in different scheduling strategies.  FCFS, while simple, can suffer from the convoy effect. SJF, though optimal in terms of average waiting time (for non-preemptive scheduling), requires knowledge of burst times and can lead to starvation. Round Robin offers fairness and responsiveness, particularly for interactive systems, but its performance is sensitive to the chosen time quantum. Priority scheduling allows for prioritizing important tasks but must be carefully managed to avoid starvation or priority inversion.
