@@ -1,4 +1,4 @@
-> # Program Ststement
+> # Program Statement
 > ## To stimulate CPU Scheduling Algorithms like FCFS, SJF, RR and Priority using C
 >
 > # Program Description
@@ -295,3 +295,15 @@ int main() {
 > > > Sorts and then calls `fcfs`.
 
 > This improved version is more robust, efficient, and provides clearer output for comparing CPU scheduling algorithms.
+
+> # HOW to execute Program
+> Open the terminal
+> 
+> compile the program
+> 
+> `gcc filename.c -o exec-name`
+> 
+> run the program
+> 
+> `./exec-name`
+>  
