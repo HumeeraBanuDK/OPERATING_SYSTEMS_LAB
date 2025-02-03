@@ -119,4 +119,4 @@ int main() {
     return 0;
 }
 ```
-!{monitor output](opm1.png)
+![monitor output](opm1.png)
