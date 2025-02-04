@@ -81,7 +81,6 @@ Imagine **5 people** trying to use **3 charging ports** at an airport:
 
 ---
 
-Let me know if you'd like to dive deeper into any specific part! 🚀
 
 # Source Code a) Semaphore
 ```c
