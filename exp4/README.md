@@ -2,7 +2,7 @@
 # Prgram description
 # ✅ Semaphores, Monitors, and Ports in Operating Systems
 
-These are key concepts in **process synchronization** and **resource management** in operating systems. Let's break them down with examples and comparisons. 🚀
+These are key concepts in **process synchronization** and **resource management** in operating systems. Let's break them down with examples and comparisons. 
 
 ---
 
