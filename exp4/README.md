@@ -1,4 +1,4 @@
-# Contr0l the number of ports opened systems with a) Semephore b) Monitor
+# Control the number of ports opened systems with a) Semephore b) Monitor
 # Prgram description
 # ✅ Semaphores, Monitors, and Ports in Operating Systems
 
