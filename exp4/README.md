@@ -338,3 +338,191 @@ In this example, only 5 threads can open ports simultaneously, and other threads
 ## Conclusion
 
 This program demonstrates how semaphores can be used to control concurrent access to shared resources (ports). It is a basic example of synchronization in multithreaded environments, ensuring that no more than a specified number of threads can access a resource at once.
+
+
+
+# Program Interpretation: Port Management with Mutex and Condition Variables
+
+This C program simulates managing a limited number of ports using multiple threads. It uses a monitor-like structure, mutexes, and condition variables for synchronization. Below is the detailed explanation of how the program works.
+
+## 1. Header Files and Definitions
+
+```c
+#include <stdio.h>
+#include <pthread.h>
+#include <unistd.h>  // For sleep()
+
+#define MAX_OPEN_PORTS 5  // Define the maximum number of allowed open ports
+```
+
+- **`#include <stdio.h>`**: Includes the standard I/O library to handle printing.
+- **`#include <pthread.h>`**: Includes the POSIX threads library to enable multithreading.
+- **`#include <unistd.h>`**: Includes the standard library providing the `sleep()` function for simulating port usage time.
+- **`#define MAX_OPEN_PORTS 5`**: Defines the maximum number of ports that can be concurrently open at any time (5 in this case).
+
+## 2. PortMonitor Structure
+
+```c
+typedef struct {
+    int available_ports;
+    pthread_mutex_t mutex;
+    pthread_cond_t condition;
+} PortMonitor;
+```
+
+- **`PortMonitor` structure**: 
+  - **`available_ports`**: Holds the count of available ports.
+  - **`mutex`**: A mutex for locking critical sections and preventing race conditions.
+  - **`condition`**: A condition variable used for synchronization when no ports are available.
+
+## 3. Monitor Initialization Function
+
+```c
+void init_monitor(PortMonitor* monitor) {
+    monitor->available_ports = MAX_OPEN_PORTS;
+    pthread_mutex_init(&monitor->mutex, NULL);
+    pthread_cond_init(&monitor->condition, NULL);
+}
+```
+
+- **`init_monitor` function**: 
+  - Initializes the monitor with the maximum available ports.
+  - Initializes the mutex and the condition variable to manage synchronization between threads.
+
+## 4. Open Port Function
+
+```c
+void open_port(PortMonitor* monitor, int thread_id) {
+    pthread_mutex_lock(&monitor->mutex);  // Enter critical section
+
+    while (monitor->available_ports == 0) {
+        pthread_cond_wait(&monitor->condition, &monitor->mutex);  // Wait if no ports are available
+    }
+    monitor->available_ports--;  // Allocate a port
+    printf("Port opened by thread %d
+", thread_id);
+
+    pthread_mutex_unlock(&monitor->mutex);  // Exit critical section
+}
+```
+
+- **`open_port` function**: 
+  - The thread first locks the mutex to ensure thread-safe access to shared resources.
+  - If no ports are available (`available_ports == 0`), it waits using `pthread_cond_wait`.
+  - Once a port becomes available, the thread decreases the `available_ports` count and prints that it has opened the port.
+  - Finally, the mutex is unlocked to allow other threads to access the shared resource.
+
+## 5. Close Port Function
+
+```c
+void close_port(PortMonitor* monitor, int thread_id) {
+    pthread_mutex_lock(&monitor->mutex);  // Enter critical section
+
+    monitor->available_ports++;  // Release the port
+    printf("Port closed by thread %d
+", thread_id);
+    pthread_cond_signal(&monitor->condition);  // Notify waiting threads
+
+    pthread_mutex_unlock(&monitor->mutex);  // Exit critical section
+}
+```
+
+- **`close_port` function**: 
+  - The thread locks the mutex to enter the critical section.
+  - It releases a port by incrementing the `available_ports` count.
+  - A message is printed indicating that the port was closed.
+  - `pthread_cond_signal` is used to notify one of the waiting threads that a port is now available.
+  - The mutex is unlocked, allowing other threads to proceed.
+
+## 6. Thread Handler Function
+
+```c
+void* port_handler(void* arg) {
+    int thread_id = *(int*)arg;
+    static PortMonitor monitor = {0};  // Shared monitor instance
+
+    // Initialize monitor only once (for the first thread)
+    if (monitor.available_ports == 0) {
+        init_monitor(&monitor);
+    }
+
+    open_port(&monitor, thread_id);
+    sleep(2);  // Simulate port usage
+    close_port(&monitor, thread_id);
+
+    return NULL;
+}
+```
+
+- **`port_handler` function**: 
+  - Each thread receives a `thread_id` from the argument and uses it to identify the thread.
+  - A shared `PortMonitor` instance is used across all threads. It is initialized by the first thread to manage the ports.
+  - The thread attempts to open a port, simulates usage for 2 seconds, and then closes the port.
+  - This demonstrates how the threads interact with the shared monitor to manage access to the ports.
+
+## 7. Main Function
+
+```c
+int main() {
+    pthread_t threads[10];
+    int thread_ids[10];
+
+    for (int i = 0; i < 10; i++) {
+        thread_ids[i] = i;
+        pthread_create(&threads[i], NULL, port_handler, &thread_ids[i]);
+    }
+
+    for (int i = 0; i < 10; i++) {
+        pthread_join(threads[i], NULL);
+    }
+
+    return 0;
+}
+```
+
+- **`main` function**: 
+  - Declares arrays for 10 threads (`threads[10]`) and their respective IDs (`thread_ids[10]`).
+  - A loop creates 10 threads using `pthread_create`, where each thread will execute the `port_handler` function.
+  - After all threads are created, the main thread waits for each of them to complete using `pthread_join`.
+  - Once all threads have finished, the program terminates.
+
+## 8. Execution Flow
+
+1. **Monitor Initialization**: The first thread initializes the monitor, which includes setting up the number of available ports and initializing the mutex and condition variable.
+2. **Port Allocation**: Each thread attempts to open a port. If no ports are available, it waits until a port becomes available.
+3. **Port Usage**: After opening a port, the thread simulates using it by sleeping for 2 seconds.
+4. **Port Release**: The thread then closes the port, and one of the waiting threads can be notified and proceed to open the port.
+5. **Synchronization**: The mutex and condition variable ensure that no more than 5 threads can open ports at the same time, and the condition variable coordinates which threads should wait or proceed.
+
+## 9. Example Output
+
+```
+Port opened by thread 0
+Port opened by thread 1
+Port opened by thread 2
+Port opened by thread 3
+Port opened by thread 4
+Port closed by thread 0
+Port opened by thread 5
+Port opened by thread 6
+Port opened by thread 7
+Port opened by thread 8
+Port closed by thread 1
+Port closed by thread 2
+Port closed by thread 3
+Port closed by thread 4
+Port closed by thread 5
+Port opened by thread 9
+Port closed by thread 6
+Port closed by thread 7
+Port closed by thread 8
+Port closed by thread 9
+```
+
+- In this example, only 5 threads can open ports at the same time. Any additional threads have to wait for a port to become available.
+
+## 10. Conclusion
+
+This program demonstrates how to use a monitor-like structure with mutexes and condition variables to synchronize access to a shared resource (ports). The program ensures that no more than a specified number of threads can use the ports concurrently, and it effectively manages the threads' access to the shared ports.
+
+By using synchronization mechanisms, the program guarantees that the threads interact safely and efficiently without encountering race conditions.
