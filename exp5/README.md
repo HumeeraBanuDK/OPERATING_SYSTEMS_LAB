@@ -1,6 +1,6 @@
 ## Program Statement: To illustrate concurrent execution of threads using pthread library.
 ## Source Code:
-'''c
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
