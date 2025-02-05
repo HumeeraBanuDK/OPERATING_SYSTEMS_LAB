@@ -1,4 +1,4 @@
-## Program Statement: To illustrate concurrent execution of threads using pthread library.
+# Program Statement: To illustrate concurrent execution of threads using pthread library.
 ## Source Code:
 ```c
 #include <stdio.h>
@@ -85,7 +85,7 @@ int main() {
 ```
 ## Program Interpretation
 
-# Concurrent Execution of Threads Using Pthreads
+## Concurrent Execution of Threads Using Pthreads
 
 ## **Program Overview**
 This program demonstrates concurrent execution in C using the `pthread` library. It allows the user to input an array of integers and computes the sum of the array using two threads. The program also employs mutex locks to handle synchronization and prevent race conditions.
