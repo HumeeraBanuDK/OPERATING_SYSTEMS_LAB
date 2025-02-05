@@ -83,5 +83,73 @@ int main() {
     return 0;
 }
 ```
+## Program Interpretation
+
+# Concurrent Execution of Threads Using Pthreads
+
+## **Program Overview**
+This program demonstrates concurrent execution in C using the `pthread` library. It allows the user to input an array of integers and computes the sum of the array using two threads. The program also employs mutex locks to handle synchronization and prevent race conditions.
+
+---
+
+## **Step-by-Step Interpretation**
+
+### **1. Header Files and Global Variables**
+- **`#include <pthread.h>`**: Provides functions for creating and managing threads.
+- **`#include <stdlib.h>`** and **`#include <stdio.h>`**: Used for memory allocation and standard I/O operations.
+- **Global Variables**:
+  - `int *array;` → Dynamically allocated array for user inputs.
+  - `int sum = 0;` → Shared variable to store the cumulative sum.
+  - `int array_size;` → Holds the size of the array.
+  - `pthread_mutex_t sum_mutex;` → A mutex to synchronize access to the shared variable `sum`.
+
+---
+
+### **2. Thread Functions**
+- **`thread_function1` and `thread_function2`** are responsible for summing the first and second halves of the array, respectively.
+- **Key Operations in Each Thread:**
+  - **`pthread_mutex_lock(&sum_mutex);`** → Locks the shared resource to prevent race conditions.
+  - **`sum += array[i];`** → Adds the current array element to the sum.
+  - **`pthread_mutex_unlock(&sum_mutex);`** → Unlocks the mutex, allowing the other thread to access the sum.
+  - **`usleep(100000);`** → Introduces a 100 ms delay to simulate longer processing times, making concurrent execution more observable.
+
+---
+
+### **3. Main Function Execution**
+
+#### **Step 1: Input and Memory Allocation**
+- Prompts the user to enter the size of the array.
+- Dynamically allocates memory for the array using `malloc()`.
+- Reads the array elements from the user.
+
+#### **Step 2: Thread Creation**
+- **`pthread_create(&thread1, NULL, thread_function1, NULL);`** → Creates the first thread.
+- **`pthread_create(&thread2, NULL, thread_function2, NULL);`** → Creates the second thread.
+- Each thread works concurrently to process its half of the array.
+
+#### **Step 3: Synchronization and Joining Threads**
+- **`pthread_join(thread1, NULL);`** and **`pthread_join(thread2, NULL);`** → The main thread waits until both threads finish execution.
+
+#### **Step 4: Displaying Results and Cleanup**
+- Prints the final sum of the array.
+- Frees dynamically allocated memory and destroys the mutex using `pthread_mutex_destroy()`.
+
+---
+
+## **Key Concepts Demonstrated**
+
+1. **Concurrency:** Both threads execute simultaneously, splitting the workload for efficiency.
+2. **Race Condition Prevention:** The use of a mutex ensures that only one thread modifies the shared `sum` at a time.
+3. **Thread Synchronization:** The `pthread_join()` function ensures that the main program waits for threads to complete before proceeding.
+4. **Dynamic Memory Management:** Efficiently handles arrays of varying sizes based on user input.
+
+---
+
+
 ## OUTPUT:
 ![output](op.png)
+
+---
+## **Conclusion**
+This program illustrates the basics of concurrent execution using the `pthread` library in C. By dividing the summation task between two threads, it showcases parallelism. Mutex locks ensure data integrity during concurrent access to shared resources, and the artificial delays make the concurrent behavior visibly evident. This example lays a foundation for understanding multi-threaded programming and synchronization techniques in operating systems.
+
