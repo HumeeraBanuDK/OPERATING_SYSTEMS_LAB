@@ -152,5 +152,5 @@ int main() {
 }
 ```
 ## Executed Output
-|[ LFS Executed output ](lop1.png)
-|[ SRJF Executed Output](lop2.png)
+![ LFS Executed output ](lop1.png)
+![ SRJF Executed Output](lop2.png)
