@@ -151,6 +151,123 @@ int main() {
     return 0;
 }
 ```
+---
+# **Interpretation of the CPU Scheduling Program (LJF & SRJF)**
+
+## **Introduction**
+The given C program simulates two CPU scheduling algorithms:
+
+1. **Longest Job First (LJF)** - Non-preemptive scheduling where the process with the longest burst time is executed first.
+2. **Shortest Remaining Job First (SRJF)** - Preemptive scheduling where the process with the shortest remaining burst time is executed first.
+
+The program also calculates:
+- **Total Waiting Time**
+- **Total Turnaround Time**
+- **Average Waiting Time**
+- **Average Turnaround Time**
+
+## **Understanding the Program**
+
+### **1. Process Structure**
+The program defines a `Process` structure that includes the following fields:
+- `pid` (Process ID)
+- `arrival_time` (Arrival time of the process)
+- `burst_time` (Total execution time of the process)
+- `remaining_time` (Remaining execution time, useful for SRJF)
+- `completion_time` (Time at which the process finishes execution)
+- `turnaround_time` (Completion Time - Arrival Time)
+- `waiting_time` (Turnaround Time - Burst Time)
+
+### **2. Sorting by Arrival Time**
+The function `sortByArrivalTime()` sorts the processes in increasing order of arrival time. This ensures that processes are considered for execution as soon as they arrive.
+
+### **3. Longest Job First (LJF) Scheduling**
+- The algorithm selects the process with the **maximum burst time** among those that have already arrived.
+- The selected process runs until completion.
+- The process’s **completion time, turnaround time, and waiting time** are calculated.
+- The process is marked as completed, and the loop continues until all processes are executed.
+
+### **4. Shortest Remaining Job First (SRJF) Scheduling**
+- The algorithm selects the process with the **minimum remaining time** from the available processes.
+- The selected process runs for **one time unit** and is preempted if another process with a shorter burst time arrives.
+- If a process completes execution, its **completion time, turnaround time, and waiting time** are recorded.
+- The loop continues until all processes are completed.
+
+### **5. Calculation of Performance Metrics**
+For both LJF and SRJF:
+- **Total Waiting Time** is the sum of waiting times for all processes.
+- **Total Turnaround Time** is the sum of turnaround times for all processes.
+- **Average Waiting Time** is calculated as:
+  
+  \[ \text{Avg. Waiting Time} = \frac{\text{Total Waiting Time}}{n} \]
+  
+- **Average Turnaround Time** is calculated as:
+  
+  \[ \text{Avg. Turnaround Time} = \frac{\text{Total Turnaround Time}}{n} \]
+  
+where \( n \) is the total number of processes.
+
+## **Example Execution & Interpretation**
+
+### **Input Example:**
+```
+Enter the number of processes: 3
+Enter Arrival Time and Burst Time for Process 1: 0 6
+Enter Arrival Time and Burst Time for Process 2: 2 8
+Enter Arrival Time and Burst Time for Process 3: 4 7
+
+Choose Scheduling Algorithm:
+1. Longest Job First (LJF)
+2. Shortest Remaining Job First (SRJF)
+Enter your choice: 2
+```
+
+### **Output (SRJF Selected):**
+```
+--- Shortest Remaining Job First (SRJF) ---
+PID	Arrival	Burst	Completion	Turnaround	Waiting
+1	0	6	6	6	0
+3	4	7	13	9	2
+2	2	8	21	19	11
+
+Total Waiting Time: 13
+Total Turnaround Time: 34
+Average Waiting Time: 4.33
+Average Turnaround Time: 11.33
+```
+
+### **Analysis of the Output:**
+1. **Process 1 (P1) starts first** as it arrives at time 0 and has the shortest burst time among available processes.
+2. **Process 3 (P3) is scheduled next** since it has a shorter remaining burst time than P2.
+3. **Process 2 (P2) runs last** since it had the longest burst time among the three.
+4. **The average waiting and turnaround times are calculated correctly.**
+
+### **Output (LJF Selected):**
+```
+--- Longest Job First (LJF) ---
+PID	Arrival	Burst	Completion	Turnaround	Waiting
+2	2	8	10	8	0
+3	4	7	17	13	6
+1	0	6	23	23	17
+
+Total Waiting Time: 23
+Total Turnaround Time: 44
+Average Waiting Time: 7.67
+Average Turnaround Time: 14.67
+```
+
+### **Analysis of the Output:**
+1. **Process 2 (P2) runs first** since it has the longest burst time among available processes.
+2. **Process 3 (P3) runs next**, followed by **Process 1 (P1)**.
+3. **The average waiting and turnaround times are calculated correctly.**
+
+## **Conclusion**
+- **LJF** favors longer processes but may cause **starvation** for shorter ones.
+- **SRJF** efficiently minimizes **waiting and turnaround time**, but it involves **frequent context switching**.
+- The program successfully simulates both algorithms and calculates key performance metrics.
+
+This interpretation explains how the program works and how the results can be analyzed effectively.
+---
 ## Executed Output
 ![ LFS Executed output ](lop1.png)
 ![ SRJF Executed Output](lop2.png)
