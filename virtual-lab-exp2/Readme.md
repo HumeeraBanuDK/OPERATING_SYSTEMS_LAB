@@ -49,4 +49,4 @@ int main() {
 }
 ```
 # OUTPUT:
-[! Virtual lab experiment 2](vle2.png)
+![ Virtual lab experiment 2](vle2.png)
