@@ -119,6 +119,6 @@ int main() {
 }
 ```
 # Output Screen Shots
-[! First Screen Shot](mam1.png)
-[! Second Screen Shot](mam2.png)
-[! Third Screen Shot](mam3.png)
+![ First Screen Shot](mam1.png)
+![! Second Screen Shot](mam2.png)
+![! Third Screen Shot](mam3.png)
