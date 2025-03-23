@@ -64,4 +64,4 @@ int main() {
 }```
 # OUTPUT:
 
-![output of the exp11](db.png)
+![output of the exp11](db1.png)
