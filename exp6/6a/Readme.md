@@ -2,7 +2,7 @@
 ## Write a program to solve producer-consumer problem using Semaphores.
 # Source Code:
 # Source Code for Semphore intialization
-'''c
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/ipc.h>
