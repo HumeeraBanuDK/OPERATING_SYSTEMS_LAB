@@ -61,7 +61,8 @@ int main() {
 
     pthread_mutex_destroy(&lock); // Destroy mutex
     return 0;
-}```
+}
+```
 # OUTPUT:
 
 ![ output of the exp11 ](db1.png)
