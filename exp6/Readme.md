@@ -160,4 +160,4 @@ int main() {
 ```
 # OUTPUT:
 
-![ bankers Alg](bp.png)
+![ bankers Alg](ban.png)
