@@ -145,5 +145,5 @@ int main() {
 >  2. use ctrl+c to terminate
 
 # OuTPUT
-![ Consumer ](con.png)
-![ Producer ](pro.png)
+![Screenshot (408)](https://github.com/user-attachments/assets/59e7098c-3f7f-46d3-97f9-a9d2bfd9f65b)
+
